@@ -1,0 +1,159 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Header Section */
+header {
+    background: linear-gradient(135deg, #0077cc, #005fa3);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #333;
+    text-align: center;
+    padding: 0.8rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: #0077cc;
+    text-decoration: underline;
+}
+
+/* Section Styling */
+section {
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 900px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #005fa3;
+    border-bottom: 2px solid #0077cc;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+/* About Section */
+#about p {
+    text-align: justify;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Skills Section */
+#skills ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+#skills li {
+    background-color: #f4f4f9;
+    border-left: 5px solid #0077cc;
+    padding: 0.8rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+/* Projects Section */
+#projects ul {
+    list-style: none;
+}
+
+#projects li {
+    margin-bottom: 1rem;
+}
+
+#projects a {
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+#projects a:hover {
+    color: #005fa3;
+    text-decoration: underline;
+}
+
+/* Contact Section */
+#contact a {
+    color: #0077cc;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+#contact a:hover {
+    color: #005fa3;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    nav a {
+        margin: 0 0.5rem;
+    }
+
+    section {
+        padding: 1.5rem;
+    }
+}

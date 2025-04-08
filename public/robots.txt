@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /src/
+Disallow: /public/favicon.ico
+Disallow: /public/index.html
+Disallow: /README.md
+Disallow: /vite.config.js
+Disallow: /.gitignore
+Allow: /

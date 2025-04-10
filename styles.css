@@ -1,0 +1,679 @@
+/* Root variables for consistent theming */
+:root {
+    --background: #0a0a0a;                   /* Main background color - almost black */
+    --text-primary: #ffffff;                 /* Primary text color - white */
+    --text-secondary: #ffffff; /* Secondary text with reduced opacity */
+    --text-tertiary: rgba(255, 255, 255, 0.4);  /* Tertiary text with even lower opacity */
+    --border-color: rgba(255, 255, 255, 0.1);   /* Subtle borders */
+    --card-bg: #141414;                      /* Slightly lighter background for cards */
+    --transition: all 0.3s ease;             /* Standard transition for animations */
+    
+    /* Light theme variables - updated to more muted colors */
+    --light-gradient-top: #2c2c34;          /* Dark slate blue/grey for top of gradient */
+    --light-gradient-bottom: #3a3a47;       /* Slightly lighter slate blue for bottom of gradient */
+    --light-text-primary: #e6e6e6;          /* Light grey text - not pure white */
+    --light-text-secondary: rgba(230, 230, 230, 0.8); /* Semi-transparent light grey */
+    --light-text-tertiary: rgba(230, 230, 230, 0.5);  /* More transparent light grey */
+    --light-border-color: rgba(230, 230, 230, 0.2);   /* Subtle borders for light mode */
+    --light-card-bg: #3f3f4e;                /* Slightly lighter background for cards */
+}
+
+/* Add smooth scrolling to the HTML element */
+html {
+    scroll-behavior: smooth;
+    /* Adding increased font smoothing for better text rendering during scroll */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset default browser styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styling */
+body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1); /* Only transition color, handle background separately */
+}
+
+/* Background element that's separate from the body to prevent flashes */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+    z-index: -1;
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Light theme gradient background container */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--light-gradient-top), var(--light-gradient-bottom)) fixed;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Special transition class for smoother theme changes */
+body.theme-transitioning {
+    /* Only transition text colors, let the pseudo-elements handle backgrounds */
+    transition: color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.theme-transitioning::before,
+body.theme-transitioning::after {
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light theme class to be applied to body */
+body.light-theme::before {
+    opacity: 0; /* Hide the dark background */
+}
+
+body.light-theme::after {
+    opacity: 1; /* Show the gradient background */
+}
+
+/* Header layout with logo and social links */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+/* Logo styling */
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+/* Light theme adjustments for logo */
+body.light-theme .logo {
+    color: var(--light-text-primary);
+}
+
+/* Social links container */
+.social-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+/* Social link icons */
+.social-links a {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    transition: var(--transition);
+    opacity: 0.8;
+}
+
+/* Light theme adjustments for social links */
+body.light-theme .social-links a {
+    color: var(--light-text-primary);
+}
+
+/* Hover effect for social links */
+.social-links a:hover {
+    opacity: 1;
+}
+
+/* Main content area */
+main {
+    flex-grow: 1;
+}
+
+/* Hero section styling */
+.hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 0;
+}
+
+/* Hero content with animation - simple fade in without typewriter */
+.hero-content {
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Animation for fading in hero content */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main heading styling */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    text-align: left;
+}
+
+/* Emoji in heading */
+.emoji {
+    display: inline;
+    font-size: 2.5rem;
+}
+
+/* Subtitle and intro text - now smaller than h1 */
+.subtitle, .intro {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.intro {
+    color: var(--text-secondary);
+}
+
+/* Light theme adjustment for intro text */
+body.light-theme .intro {
+    color: var(--light-text-primary); /* Use the primary text color (nearly black) */
+}
+
+/* Ensure the play-intro specifically has the same styling */
+body.light-theme .play-intro {
+    color: var(--light-text-primary); /* Match the heading and subtitle color */
+}
+
+/* Play section specific styling */
+.play-intro {
+    font-weight: 600; /* Make it slightly bolder */
+    font-size: 1.8rem; /* Match the size of subtitle */
+}
+
+/* Location styling */
+.location {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.location i {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Light theme adjustments for location */
+body.light-theme .location,
+body.light-theme .location i {
+    color: var(--light-text-secondary);
+}
+
+/* Fixed toggle container */
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+/* Toggle button styling */
+.toggle {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 0.4rem;
+    display: flex;
+    position: relative;
+    width: 200px; /* Size of the toggle */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px); /* Blur effect behind toggle */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Light theme adjustments for toggle button */
+body.light-theme .toggle {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Individual toggle buttons */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 2;
+    width: 50%;
+    transition: var(--transition);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Light theme adjustments for toggle button */
+body.light-theme .toggle-btn {
+    color: var(--light-text-secondary);
+}
+
+/* Active toggle button state */
+.toggle-btn.active {
+    color: var(--background);
+}
+
+/* Light theme adjustments for toggle button */
+body.light-theme .toggle-btn.active {
+    color: #ffffff; /* Change to white for better visibility */
+}
+
+/* Sliding indicator for active toggle */
+.toggle-indicator {
+    position: absolute;
+    height: 80%;
+    width: 48%;
+    background-color: var(--text-primary);
+    border-radius: 20px;
+    top: 10%;
+    left: 2%;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Light theme adjustments for toggle button */
+body.light-theme .toggle-indicator {
+    background-color: #121212; /* Darker background for the indicator in light mode */
+}
+
+/* Position indicator when second button is active */
+.toggle-btn:nth-child(2).active ~ .toggle-indicator {
+    left: 50%;
+}
+
+/* Content section styling (Work/Play tabs) */
+.content-section {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Active content section */
+.content-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Container for all sections */
+.sections-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Individual content block (Education, Experience, etc.) */
+.content-block {
+    margin: 0 0 4rem; /* Consistent spacing between major sections */
+    scroll-margin-top: 100px;
+}
+
+/* Section header styling */
+.section-header {
+    padding: 2rem 0 2rem; /* Consistent padding for all section headers */
+    background-color: var(--background);
+    margin-bottom: 1rem; /* Consistent spacing below all headers */
+    will-change: opacity, transform; /* Optimize for animations */
+}
+
+/* Light theme adjustments for section headers */
+body.light-theme .section-header {
+    background: none; /* Remove solid background color to let gradient show through */
+}
+
+/* Section heading */
+h2 {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+/* Light theme adjustments for section headers */
+body.light-theme h2 {
+    color: var(--light-text-primary);
+}
+
+/* Container for items within a section */
+.items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Consistent spacing between all items */
+}
+
+/* Individual item layout */
+.item {
+    display: flex;
+    min-height: 50vh; /* Reduced from 60vh */
+    align-items: center;
+    margin-bottom: 0; /* Remove bottom margin since we're using gap for spacing */
+}
+
+/* Remove margin from last item */
+.item:last-child {
+    margin-bottom: 0;
+}
+
+/* Image container within an item */
+.item-image {
+    width: 45%;
+    flex-shrink: 0;
+}
+
+/* Placeholder for images */
+.image-placeholder {
+    width: 100%;
+    padding-bottom: 75%; /* 4:3 ratio */
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Light theme placeholder images */
+body.light-theme .image-placeholder {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Styling for the placeholder images */
+.placeholder-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+/* Light theme adjustments for placeholder images */
+body.light-theme .placeholder-image {
+    opacity: 0.85; /* Slightly higher opacity in light mode */
+}
+
+/* Content container within an item */
+.item-content {
+    width: 55%;
+    padding: 0 2rem;
+}
+
+/* Left image layout */
+.image-left {
+    flex-direction: row;
+}
+
+/* Right image layout */
+.image-right {
+    flex-direction: row-reverse;
+}
+
+/* Item heading */
+h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+/* Date display */
+.date {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* Light theme adjustments for date & tech info */
+body.light-theme .date,
+body.light-theme .tech,
+body.light-theme li {
+    color: var(--light-text-secondary);
+}
+
+/* Link styling */
+.link a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    letter-spacing: 0.2px;
+    position: relative;
+    border-bottom: 1px solid var(--text-primary);
+}
+
+/* Light theme adjustments for links */
+body.light-theme .link a {
+    color: var(--light-text-primary);
+    border-bottom: 1px solid var(--light-text-primary);
+}
+
+/* Link hover effect */
+.link a:hover {
+    opacity: 0.8;
+}
+
+/* Technology tag styling */
+.tech {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+}
+
+/* List styling */
+ul {
+    padding-left: 1.5rem;
+    margin-top: 1.25rem;
+}
+
+/* List item styling */
+li {
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Container for skill tags */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Individual skill tag */
+.skill-tag {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem 1.5rem;
+    border-radius: 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+/* Light theme adjustments for skill tags */
+body.light-theme .skill-tag {
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--light-border-color);
+    color: var(--light-text-primary);
+}
+
+/* Skill tag hover effect */
+.skill-tag:hover {
+    background-color: var(--text-primary);
+    color: var(--background);
+    cursor: default;
+}
+
+/* Light theme adjustments for skill tags */
+body.light-theme .skill-tag:hover {
+    background-color: var(--light-text-primary);
+    color: var(--background); /* Changed from --light-background which was undefined */
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 4rem;
+}
+
+/* Light theme footer */
+body.light-theme footer {
+    color: var(--light-text-tertiary);
+    border-top: 1px solid var(--light-border-color);
+}
+
+/* Remove Play section background gradient */
+#play {
+    background: none;
+    transition: none;
+}
+
+/* Responsive layout for tablets */
+@media (max-width: 1024px) {
+    /* Stack items vertically on smaller screens */
+    .item {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* Full width images and content on smaller screens */
+    .item-image,
+    .item-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Ensure all layouts stack vertically */
+    .image-left,
+    .image-right {
+        flex-direction: column;
+    }
+
+    /* Reduce heading size */
+    h2 {
+        font-size: 3.5rem;
+    }
+    
+    /* Reduce gap between items */
+    .items-container {
+        gap: 2rem; /* Keep consistent for tablet */
+    }
+
+    /* Section header spacing for tablets */
+    .section-header {
+        padding: 1.5rem 0 1.5rem;
+    }
+}
+
+/* Responsive layout for mobile */
+@media (max-width: 768px) {
+    /* Smaller body padding */
+    body {
+        padding: 0 1.5rem;
+    }
+
+    /* Smaller hero height */
+    .hero {
+        height: 50vh;
+    }
+
+    /* Smaller text sizes - keeping proper proportion */
+    h1, .emoji {
+        font-size: 2rem;
+    }
+    
+    .subtitle, .intro, .play-intro {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Smaller section header padding */
+    .section-header {
+        padding: 1rem 0 1rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Adjust item height */
+    .item {
+        min-height: auto;
+        margin-bottom: 2rem; /* Reduced for mobile */
+    }
+    
+    /* Smaller gap between items */
+    .items-container {
+        gap: 1.5rem;
+    }
+    
+    /* Smaller toggle button */
+    .toggle {
+        width: 180px;
+    }
+    
+    /* Smaller toggle button padding */
+    .toggle-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* More natural transitions for all elements that change with theme */
+.logo, .social-links a, .intro, .location, .location i,
+.section-header, h2, .date, .tech, li, .link a, .skill-tag {
+    transition: color 0.6s ease, background-color 0.6s ease, border-color 0.6s ease;
+}

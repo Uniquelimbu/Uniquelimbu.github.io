@@ -1,21 +1,12 @@
 /* Root variables for consistent theming */
 :root {
-    --background: #0a0a0a;                   /* Main background color - almost black */
-    --text-primary: #ffffff;                 /* Primary text color - white */
-    --text-secondary: #ffffff; /* Secondary text with reduced opacity */
+    --background: #0a0a0a;                      /* Main background color - almost black */
+    --text-primary: #ffffff;                    /* Primary text color - white */
+    --text-secondary: #ffffff;                  /* Secondary text with reduced opacity */
     --text-tertiary: rgba(255, 255, 255, 0.4);  /* Tertiary text with even lower opacity */
     --border-color: rgba(255, 255, 255, 0.1);   /* Subtle borders */
-    --card-bg: #141414;                      /* Slightly lighter background for cards */
-    --transition: all 0.3s ease;             /* Standard transition for animations */
-    
-    /* Light theme variables - updated to more muted colors */
-    --light-gradient-top: #2c2c34;          /* Dark slate blue/grey for top of gradient */
-    --light-gradient-bottom: #3a3a47;       /* Slightly lighter slate blue for bottom of gradient */
-    --light-text-primary: #e6e6e6;          /* Light grey text - not pure white */
-    --light-text-secondary: rgba(230, 230, 230, 0.8); /* Semi-transparent light grey */
-    --light-text-tertiary: rgba(230, 230, 230, 0.5);  /* More transparent light grey */
-    --light-border-color: rgba(230, 230, 230, 0.2);   /* Subtle borders for light mode */
-    --light-card-bg: #3f3f4e;                /* Slightly lighter background for cards */
+    --card-bg: #141414;                         /* Slightly lighter background for cards */
+    --transition: all 0.3s ease;                  /* Standard transition for animations */
 }
 
 /* Add smooth scrolling to the HTML element */
@@ -62,18 +53,9 @@ body::before {
     transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Light theme gradient background container */
+/* Light theme gradient background container - not needed anymore */
 body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, var(--light-gradient-top), var(--light-gradient-bottom)) fixed;
-    z-index: -2;
-    opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    display: none;
 }
 
 /* Special transition class for smoother theme changes */
@@ -102,6 +84,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 2rem 0;
+    /* Remove the header's own animation since we'll animate its children individually */
+    position: relative;
 }
 
 /* Logo styling */
@@ -112,6 +96,10 @@ header {
     color: var(--text-primary);
     text-transform: uppercase;
     transition: var(--transition);
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideDown 0.8s ease-out forwards;
+    animation-delay: 0.2s;
 }
 
 /* Light theme adjustments for logo */
@@ -124,6 +112,10 @@ body.light-theme .logo {
     display: flex;
     list-style: none;
     gap: 1.5rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideDown 0.8s ease-out forwards;
+    animation-delay: 0.4s; /* Appears after toggle */
 }
 
 /* Social link icons */
@@ -157,6 +149,31 @@ main {
     justify-content: center;
     align-items: flex-start;
     padding: 2rem 0;
+    position: relative; /* Ensure proper positioning for background */
+    overflow: hidden; /* Keep floating elements contained */
+}
+
+/* Animated background for hero section */
+.animated-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind content */
+    pointer-events: none; /* Allow interaction with elements behind it */
+    overflow: hidden; /* Keep shapes contained */
+}
+
+/* Floating shape styles - refined for smoother animation */
+.floating-shape {
+    position: absolute; 
+    transform-origin: center;
+    transition: opacity 1.2s ease-out; /* Smooth fade in/out */
+    will-change: transform, opacity;
+    backface-visibility: hidden; /* Prevent flickering during animation */
+    -webkit-font-smoothing: antialiased; /* Smoother edges */
+    pointer-events: none;
 }
 
 /* Hero content with animation - simple fade in without typewriter */
@@ -165,6 +182,9 @@ main {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s ease forwards;
+    position: relative;
+    z-index: 5; /* Above animated background */
+    mix-blend-mode: normal; /* Ensure text is readable over shapes */
 }
 
 /* Animation for fading in hero content */
@@ -213,8 +233,9 @@ body.light-theme .play-intro {
     color: var(--light-text-primary); /* Match the heading and subtitle color */
 }
 
-/* Play section specific styling */
-.play-intro {
+/* Play section specific styling - updated to match work section */
+.play-intro, .play-subtitle {
+    color: var(--text-secondary);
     font-weight: 600; /* Make it slightly bolder */
     font-size: 1.8rem; /* Match the size of subtitle */
 }
@@ -231,7 +252,7 @@ body.light-theme .play-intro {
 
 .location i {
     font-size: 1rem;
-    color: var(--text-secondary);
+    color: var (--text-secondary);
 }
 
 /* Light theme adjustments for location */
@@ -248,33 +269,33 @@ body.light-theme .location i {
     position: fixed;
     top: 2rem;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-20px); /* Adjust initial transform for animation */
     z-index: 100;
+    opacity: 0; /* Start hidden */
+    animation: slideDown 0.8s ease-out forwards;
+    animation-delay: 0.3s; /* Appears between logo and social icons */
 }
 
-/* Toggle button styling */
+/* Toggle button styling - keep consistent dark theme */
 .toggle {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(20, 20, 20, 0.75); /* Darker, more opaque background */
     border-radius: 24px;
     padding: 0.4rem;
     display: flex;
     position: relative;
     width: 200px; /* Size of the toggle */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px); /* Blur effect behind toggle */
-    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* Stronger shadow for better visibility */
+    backdrop-filter: blur(15px); /* Increased blur effect behind toggle */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for definition */
+    z-index: 150; /* Ensure it's above other content */
 }
 
-/* Light theme adjustments for toggle button */
-body.light-theme .toggle {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-/* Individual toggle buttons */
+/* Individual toggle buttons - increase contrast for better readability */
 .toggle-btn {
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8); /* Brighter text for inactive buttons */
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
     cursor: pointer;
@@ -284,6 +305,7 @@ body.light-theme .toggle {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Subtle text shadow for readability */
 }
 
 /* Light theme adjustments for toggle button */
@@ -349,40 +371,94 @@ body.light-theme .toggle-indicator {
 .content-block {
     margin: 0 0 4rem; /* Consistent spacing between major sections */
     scroll-margin-top: 100px;
+    background-color: var(--card-bg); /* Slightly lighter than main background */
+    border-radius: 24px; /* Smooth curved edges */
+    padding: 2.5rem; /* Increased padding for better spacing */
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Ensure content doesn't overflow rounded corners */
+    border: 1px solid var(--border-color);
 }
 
-/* Section header styling */
+/* Hover effect for content blocks */
+.content-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* Alternating colors for content blocks */
+.content-block:nth-child(odd) {
+    background-color: rgba(30, 30, 30, 0.5); /* Slightly different shade */
+}
+
+.content-block:nth-child(even) {
+    background-color: rgba(40, 40, 40, 0.5); /* Alternate shade */
+}
+
+/* For the play section, use slightly different colors */
+#play .content-block:nth-child(odd) {
+    background-color: rgba(26, 32, 44, 0.5); /* Bluish shade */
+}
+
+#play .content-block:nth-child(even) {
+    background-color: rgba(45, 30, 46, 0.5); /* Purplish shade */
+}
+
+/* Section header styling - fully integrated with content block */
 .section-header {
-    padding: 2rem 0 2rem; /* Consistent padding for all section headers */
-    background-color: var(--background);
-    margin-bottom: 1rem; /* Consistent spacing below all headers */
+    padding: 0 0 1.5rem; /* Remove top padding, add bottom padding for separator */
+    background-color: transparent; /* Ensure transparency to show parent background */
+    margin-bottom: 1.5rem; /* Space after the header */
+    border-bottom: 1px solid var(--border-color); /* Subtle separator */
     will-change: opacity, transform; /* Optimize for animations */
 }
 
-/* Light theme adjustments for section headers */
-body.light-theme .section-header {
-    background: none; /* Remove solid background color to let gradient show through */
-}
-
-/* Section heading */
+/* Section heading - slightly reduced for better proportion */
 h2 {
-    font-size: 5rem;
+    font-size: 3rem; /* Reduced for better proportions */
     font-weight: 800;
     color: var(--text-primary);
-    letter-spacing: -2px;
-    line-height: 1;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
 }
 
-/* Light theme adjustments for section headers */
-body.light-theme h2 {
-    color: var(--light-text-primary);
-}
-
-/* Container for items within a section */
+/* Items container - proper spacing after section header */
 .items-container {
     display: flex;
     flex-direction: column;
     gap: 2rem; /* Consistent spacing between all items */
+    padding-top: 0; /* No extra padding needed since we have margin on header */
+}
+
+/* Light theme adjustments */
+body.light-theme .content-block {
+    background-color: rgba(245, 245, 245, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .content-block:nth-child(odd) {
+    background-color: rgba(240, 240, 245, 0.8);
+}
+
+body.light-theme .content-block:nth-child(even) {
+    background-color: rgba(235, 235, 240, 0.8);
+}
+
+body.light-theme #play .content-block:nth-child(odd) {
+    background-color: rgba(230, 240, 250, 0.8);
+}
+
+body.light-theme #play .content-block:nth-child(even) {
+    background-color: rgba(240, 230, 245, 0.8);
+}
+
+body.light-theme .section-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: none; /* Redundant but keeping for clarity */
+}
+
+body.light-theme h2 {
+    color: var(--light-text-primary);
 }
 
 /* Individual item layout */
@@ -577,6 +653,12 @@ body.light-theme footer {
     transition: none;
 }
 
+/* Also apply animated background to Play section hero */
+#play .hero {
+    position: relative; /* Ensure proper positioning for background */
+    overflow: hidden; /* Keep floating elements contained */
+}
+
 /* Responsive layout for tablets */
 @media (max-width: 1024px) {
     /* Stack items vertically on smaller screens */
@@ -600,7 +682,7 @@ body.light-theme footer {
 
     /* Reduce heading size */
     h2 {
-        font-size: 3.5rem;
+        font-size: 2.5rem; /* Further reduced on tablets */
     }
     
     /* Reduce gap between items */
@@ -610,7 +692,12 @@ body.light-theme footer {
 
     /* Section header spacing for tablets */
     .section-header {
-        padding: 1.5rem 0 1.5rem;
+        padding: 0 0 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .content-block {
+        padding: 2rem;
     }
 }
 
@@ -636,7 +723,7 @@ body.light-theme footer {
     }
 
     h2 {
-        font-size: 2.5rem;
+        font-size: 2.2rem; /* Smallest size on mobile */
     }
 
     h3 {
@@ -645,8 +732,8 @@ body.light-theme footer {
 
     /* Smaller section header padding */
     .section-header {
-        padding: 1rem 0 1rem;
-        margin-bottom: 0.75rem;
+        padding: 0 0 1rem;
+        margin-bottom: 1rem;
     }
     
     /* Adjust item height */
@@ -670,10 +757,58 @@ body.light-theme footer {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
     }
+
+    .content-block {
+        padding: 1.5rem;
+        border-radius: 16px; /* Slightly smaller radius on mobile */
+    }
+    
+    .section-header {
+        padding: 0 0 1.5rem;
+    }
+
+    /* Reduce number of animated elements for better performance */
+    .floating-shape {
+        filter: blur(20px) !important;
+    }
 }
 
 /* More natural transitions for all elements that change with theme */
 .logo, .social-links a, .intro, .location, .location i,
 .section-header, h2, .date, .tech, li, .link a, .skill-tag {
     transition: color 0.6s ease, background-color 0.6s ease, border-color 0.6s ease;
+}
+
+/* Animation for all top elements sliding down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* For the toggle container, we need a special version of the animation to preserve the horizontal centering */
+@keyframes toggleSlideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Modify the toggle container to use its special animation */
+.toggle-container {
+    animation-name: toggleSlideDown;
+}
+
+/* Remove the old fadeInDown animation as it's no longer needed */
+@keyframes fadeInDown {
+    /* We'll replace this with slideDown above */
 }

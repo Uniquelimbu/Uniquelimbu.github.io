@@ -3,94 +3,96 @@ document.addEventListener('DOMContentLoaded', function() {
     // ------ Toggle between Work and Play sections ------
     const toggleBtns = document.querySelectorAll('.toggle-btn');
     const sections = document.querySelectorAll('.content-section');
-
+    
+    // Animation timing constants (in milliseconds)
+    const FADE_OUT_DURATION = 400;  // Section fade out duration
+    const SECTION_SWITCH_DELAY = 400; // Delay before switching sections
+    const HEADER_STAGGER_DELAY = 100; // Delay between each header animation
+    const HEADER_BASE_DELAY = 150;   // Base delay before starting header animations
+    
     // Add click event listeners to toggle buttons
     toggleBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Update visual state of buttons
-            toggleBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Show/hide sections with smooth animation
+            // Get target section id and current active section
             const targetId = this.getAttribute('data-target');
             const currentActiveSection = document.querySelector('.content-section.active');
             
             // Don't do anything if clicked on the already active section
             if (currentActiveSection && currentActiveSection.id === targetId) return;
             
-            // First, start fading out the current section
+            // Update visual state of buttons
+            toggleBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Step 1: Fade out current section
             if (currentActiveSection) {
-                currentActiveSection.style.opacity = '0';
-                currentActiveSection.style.transform = 'translateY(10px)';
+                fadeOutSection(currentActiveSection);
             }
             
-            // Always add transition class first to ensure smooth animation
-            document.body.classList.add('theme-transitioning');
-            
-            // Unified timing values for both directions
-            const themeTransitionDelay = 100;  // Theme change delay
-            const contentTransitionDelay = 400; // Content transition delay
-            const cleanupDelay = 1000;        // Cleanup delay
-            
-            // Common transition pattern for both directions
-            // Step 1: Handle theme change first
+            // Step 2: After delay, switch sections
             setTimeout(() => {
-                if (targetId === 'play') {
-                    document.body.classList.add('light-theme');
-                } else {
-                    document.body.classList.remove('light-theme');
-                }
-            }, themeTransitionDelay);
-            
-            // Step 2: Handle content transition with exactly the same timing
-            setTimeout(() => {
-                handleContentTransition(currentActiveSection, targetId);
-            }, contentTransitionDelay);
-            
-            // Step 3: Clean up transition class
-            setTimeout(() => {
-                document.body.classList.remove('theme-transitioning');
-            }, cleanupDelay);
+                switchToSection(currentActiveSection, targetId);
+            }, SECTION_SWITCH_DELAY);
         });
     });
     
-    // Helper function to handle content transition
-    function handleContentTransition(currentActiveSection, targetId) {
+    // Fade out a section with animation
+    function fadeOutSection(section) {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(10px)';
+    }
+    
+    // Switch from current section to target section
+    function switchToSection(currentSection, targetId) {
         // Hide the previous section
-        if (currentActiveSection) {
-            currentActiveSection.classList.remove('active');
+        if (currentSection) {
+            currentSection.classList.remove('active');
         }
         
-        // Find the target section
+        // Find and setup the target section
         const targetSection = document.getElementById(targetId);
-        
         if (targetSection) {
-            // Set up target section for animation (invisible but active)
+            // Initialize the section for fade-in animation
             targetSection.style.opacity = '0';
             targetSection.style.transform = 'translateY(10px)';
             targetSection.classList.add('active');
             
-            // Add a consistent delay before showing the new section content
+            // Setup and trigger animations for section headers
+            animateSectionHeaders(targetSection);
+            
+            // Reinitialize animated background if needed
+            if (targetId === 'play') {
+                if (window.initHeroBackground) {
+                    window.initHeroBackground('playHeroBackground');
+                }
+            }
+            
+            // Fade in the main section content
             setTimeout(() => {
-                // Initialize all section headers to be initially hidden with a staggered reveal
-                const sectionHeaders = targetSection.querySelectorAll('.section-header');
-                sectionHeaders.forEach((header, index) => {
-                    header.style.opacity = '0';
-                    header.style.transform = 'translateY(20px)';
-                    header.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    
-                    // Stagger the appearance of section headers
-                    setTimeout(() => {
-                        header.style.opacity = '1';
-                        header.style.transform = 'translateY(0)';
-                    }, 150 + (index * 100)); // Stagger each header by 100ms
-                });
-                
-                // Fade in the main section content
                 targetSection.style.opacity = '1';
                 targetSection.style.transform = 'translateY(0)';
-            }, 100);
+            }, 50); // Small delay for smoother appearance
         }
+    }
+    
+    // Animate section headers with staggered timing
+    function animateSectionHeaders(section) {
+        const sectionHeaders = section.querySelectorAll('.section-header');
+        
+        // Reset all headers to initial hidden state
+        sectionHeaders.forEach((header) => {
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(20px)';
+            header.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        // Animate each header with staggered timing
+        sectionHeaders.forEach((header, index) => {
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+            }, HEADER_BASE_DELAY + (index * HEADER_STAGGER_DELAY));
+        });
     }
 
     // ------ Animation for items on scroll ------
@@ -104,8 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const image = item.querySelector('.item-image');
                 const content = item.querySelector('.item-content');
                 
-                // Stagger animations for better visual effect
-                // First animate the image with slight delay
+                // Animate image with slight delay
                 setTimeout(() => {
                     if (image) {
                         image.style.opacity = '1';
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }, 200);
                 
-                // Then animate the content with additional delay
+                // Animate content with additional delay
                 setTimeout(() => {
                     if (content) {
                         content.style.opacity = '1';
@@ -150,19 +151,14 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(item);
     });
 
-    // ------ Smooth scrolling for anchor links with improved easing ------
+    // ------ Smooth scrolling for anchor links ------
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                // Get distance to scroll
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                const startPosition = window.pageYOffset;
-                const distance = targetPosition - startPosition;
-                
-                // Add small offset to avoid exact edge positioning
-                const offset = -20;
+                const offset = -20; // Small offset for better positioning
                 
                 window.scrollTo({
                     top: targetPosition + offset,
@@ -172,10 +168,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add smooth scrolling to regular page navigation (non-anchor links)
-    document.addEventListener('wheel', function(e) {
-        // Don't interfere with default smooth scrolling, just ensure it's natural
-        // e.preventDefault; // This line had an error - it's not calling the function
-        // Remove or properly implement preventDefault if needed
-    }, { passive: true }); // Using passive to improve scroll performance
+    // Improve scroll performance with passive events
+    document.addEventListener('wheel', function() {
+        // Using passive event listener for better performance
+    }, { passive: true });
 });

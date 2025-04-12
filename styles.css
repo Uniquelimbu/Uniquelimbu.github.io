@@ -456,7 +456,7 @@ body.light-theme .image-placeholder {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* Styling for the placeholder images */
+/* Standard styling for work section images */
 .placeholder-image {
     position: absolute;
     top: 0;
@@ -468,9 +468,34 @@ body.light-theme .image-placeholder {
     border-radius: 12px; /* Added to match container's border-radius */
 }
 
-/* Light theme adjustments for placeholder images */
-body.light-theme .placeholder-image {
-    opacity: 0.85; /* Slightly higher opacity in light mode */
+/* Completely revamped styling for play section images */
+#play .image-placeholder {
+    background-color: rgba(255, 255, 255, 0.08); /* Slightly lighter background */
+    padding-bottom: 56.25%; /* 16:9 ratio which is better for technical diagrams/screenshots */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#play .placeholder-image {
+    object-fit: contain; /* Maintain aspect ratio */
+    max-width: 90%;      /* Only use 90% of the container width */
+    max-height: 90%;     /* Only use 90% of the container height */
+    padding: 0;          /* Remove padding */
+    top: 50%;            /* Center vertically */
+    left: 50%;           /* Center horizontally */
+    transform: translate(-50%, -50%); /* Perfect centering */
+    background-color: transparent;
+}
+
+/* Adjust the play section item heights to prevent excessive whitespace */
+#play .item {
+    min-height: 40vh; /* Lower minimum height for play section */
+}
+
+/* Light theme adjustments for play section images */
+body.light-theme #play .image-placeholder {
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 /* Content container within an item */

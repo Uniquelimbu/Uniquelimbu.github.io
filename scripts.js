@@ -1,5 +1,23 @@
 // Execute when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // SEO Enhancement: Track user engagement for better analytics
+    trackUserEngagement();
+    
+    // Add detection for mouse vs. keyboard navigation for accessibility
+    document.body.classList.add('using-mouse');
+    
+    // Remove the 'using-mouse' class when Tab key is used (keyboard navigation)
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+            document.body.classList.remove('using-mouse');
+        }
+    });
+    
+    // Add the 'using-mouse' class back when mouse is used
+    document.addEventListener('mousedown', function() {
+        document.body.classList.add('using-mouse');
+    });
+    
     // ------ Toggle between Work and Play sections ------
     const toggleBtns = document.querySelectorAll('.toggle-btn');
     const sections = document.querySelectorAll('.content-section');
@@ -12,6 +30,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add click event listeners to toggle buttons
     toggleBtns.forEach(btn => {
+        // Add ARIA attributes
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-selected', btn.classList.contains('active') ? 'true' : 'false');
+        
+        // Add keyboard event listener
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+        
         btn.addEventListener('click', function() {
             // Get target section id and current active section
             const targetId = this.getAttribute('data-target');
@@ -172,4 +202,54 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('wheel', function() {
         // Using passive event listener for better performance
     }, { passive: true });
+
+    // Handle image loading
+    const images = document.querySelectorAll('.placeholder-image');
+    images.forEach(img => {
+        // When image loads, add loaded class
+        img.addEventListener('load', function() {
+            this.classList.add('loaded');
+            // Find parent placeholder and remove loading animation
+            const placeholder = this.closest('.image-placeholder');
+            if (placeholder) {
+                placeholder.classList.add('loaded');
+            }
+        });
+        
+        // Add error handling
+        img.addEventListener('error', function() {
+            // Find parent placeholder and add error class
+            const placeholder = this.closest('.image-placeholder');
+            if (placeholder) {
+                placeholder.classList.add('error');
+            }
+        });
+    });
+
+    // SEO Enhancement: Function to track user engagement
+    function trackUserEngagement() {
+        // Track time on page
+        let startTime = new Date();
+        window.addEventListener('beforeunload', function() {
+            let endTime = new Date();
+            let timeSpent = (endTime - startTime) / 1000;
+            
+            // This would typically send to an analytics system
+            console.log('Time spent on page: ' + timeSpent + ' seconds');
+        });
+        
+        // Track scroll depth
+        let maxScroll = 0;
+        window.addEventListener('scroll', function() {
+            // Calculate how far down the page the user has scrolled
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            let scrollHeight = document.documentElement.scrollHeight;
+            let clientHeight = document.documentElement.clientHeight;
+            
+            let scrolled = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            if (scrolled > maxScroll) {
+                maxScroll = scrolled;
+            }
+        });
+    }
 });

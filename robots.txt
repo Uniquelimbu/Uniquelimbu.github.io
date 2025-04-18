@@ -1,0 +1,6 @@
+# robots.txt for uniquelimbu.github.io
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://uniquelimbu.github.io/sitemap.xml

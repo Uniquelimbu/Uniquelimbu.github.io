@@ -1,6 +1,10 @@
 # robots.txt for uniquelimbu.github.io
 User-agent: *
 Allow: /
+Disallow: /assets/favicon/
 
-# Sitemap location
+# Crawl delay suggestion
+Crawl-delay: 10
+
+# Tell search engines where to find our sitemap
 Sitemap: https://uniquelimbu.github.io/sitemap.xml

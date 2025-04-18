@@ -786,9 +786,77 @@ body.light-theme footer {
         padding: 0 1.5rem;
     }
 
-    /* Smaller hero height */
+    /* Improved header spacing for mobile */
+    header {
+        padding: 1.5rem 0;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Make logo slightly smaller on mobile */
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    /* Add more spacing for social links on mobile */
+    .social-links {
+        gap: 2rem;
+    }
+    
+    /* Completely revamped toggle positioning for mobile */
+    .toggle-container {
+        position: static; /* Change from relative to static */
+        display: block;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 0.75rem auto 1.5rem; /* Reduced spacing (was 1.25rem auto 2rem) */
+        animation: none;
+        opacity: 1;
+        width: 160px;
+        clear: both; /* Ensure it appears below header elements */
+    }
+    
+    /* Remove the animation that was causing positioning issues */
+    .toggle-container {
+        animation: none !important;
+    }
+    
+    /* Smaller toggle size for mobile */
+    .toggle {
+        width: 100%;
+    }
+
+    /* Improved hero section for mobile */
     .hero {
-        height: 50vh;
+        height: auto;
+        min-height: 45vh;
+        padding: 2rem 0;
+        margin-top: 0; /* Remove top margin as we have spacing from toggle now */
+    }
+    
+    /* Better text spacing in hero content */
+    .hero-content h2 {
+        margin-bottom: 0.6rem;
+        line-height: 1.2;
+    }
+    
+    /* Adjust emoji size for mobile */
+    .emoji {
+        font-size: 1.8rem;
+    }
+    
+    /* Reduced text size for better mobile display */
+    .subtitle, .intro, .play-intro {
+        font-size: 1.5rem;
+        line-height: 1.3;
+        margin-bottom: 0.8rem;
+    }
+    
+    /* Add space after location info */
+    .location {
+        margin-bottom: 1.2rem;
     }
 
     /* Smaller text sizes - keeping proper proportion */
@@ -796,10 +864,6 @@ body.light-theme footer {
         font-size: 2rem;
     }
     
-    .subtitle, .intro, .play-intro {
-        font-size: 1.8rem;
-    }
-
     h2 {
         font-size: 2.2rem; /* Smallest size on mobile */
     }
@@ -825,24 +889,59 @@ body.light-theme footer {
         gap: 1.5rem;
     }
     
-    /* Smaller toggle button */
-    .toggle {
-        width: 180px;
-    }
-    
     /* Smaller toggle button padding */
     .toggle-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
     }
 
     .content-block {
         padding: 1.5rem;
         border-radius: 16px; /* Slightly smaller radius on mobile */
+        margin-bottom: 2.5rem; /* Add more space between content blocks */
     }
     
     .section-header {
         padding: 0 0 1.5rem;
+    }
+    
+    /* Improve readability of list items on mobile */
+    li {
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+}
+
+/* Extra small mobile devices - additional adjustments */
+@media (max-width: 380px) {
+    /* Even smaller body padding for tiny screens */
+    body {
+        padding: 0 1rem;
+    }
+    
+    /* Adjust header for very small screens */
+    header {
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 0;
+    }
+    
+    /* Center the logo on very small screens */
+    .logo {
+        margin: 0 auto 0.5rem; /* Add bottom margin to logo */
+    }
+    
+    /* More compact social links */
+    .social-links {
+        gap: 1.5rem;
+        margin: 0 auto;
+    }
+    
+    /* Smaller toggle container with adjusted spacing */
+    .toggle-container {
+        width: 140px;
+        margin: 0.9rem auto 1.5rem; /* Reduced spacing (was 1.5rem auto 2rem) */
+        transform: none;
     }
 }
 
@@ -1063,4 +1162,58 @@ body:not(.using-mouse) [tabindex]:not([tabindex="-1"]):focus,
 body:not(.using-mouse) .certification-link:focus {
     outline: 2px solid rgba(77, 144, 254, 0.5) !important; /* Subtle accessible outline only for keyboard users */
     outline-offset: 2px;
+}
+
+/* SEO specific styles - modify to make SEO heading visible but aesthetically pleasing */
+.seo-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    text-align: left;
+    color: var(--text-primary);
+    opacity: 0.9;
+}
+
+/* SEO content styling - hidden visually but accessible to search engines */
+.seo-content {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Enhanced footer styles */
+.footer-info {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.footer-info a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.footer-info a:hover {
+    opacity: 0.8;
+}
+
+/* Light theme adjustments for footer info */
+body.light-theme .footer-info {
+    color: var(--light-text-secondary);
+}
+
+body.light-theme .footer-info a {
+    color: var(--light-text-secondary);
+    border-bottom: 1px solid var(--light-border-color);
 }

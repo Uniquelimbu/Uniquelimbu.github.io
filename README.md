@@ -58,17 +58,8 @@ The site uses enterprise-grade SEO techniques:
    git clone https://github.com/Uniquelimbu/Uniquelimbu.github.io.git
    cd Uniquelimbu.github.io
    ```
-
-2. For local testing, use a simple HTTP server:
-   ```bash
-   # Using Python 3
-   python -m http.server
    
-   # Using Node.js
-   npx serve
-   ```
-
-3. To customize with your information, edit:
+2. To customize with your information, edit:
    - `index.html`: Update personal details, work history, and projects
    - `styles.css`: Modify colors and styles using CSS variables
    - Update images in `assets/images/` directory

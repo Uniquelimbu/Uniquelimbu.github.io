@@ -155,6 +155,11 @@ main {
     perspective: 800px; /* Add perspective for 3D effect */
 }
 
+/* Add specific margin control for the h2 inside hero */
+.hero-content h2 {
+    margin-bottom: 0.75rem; /* Reduce bottom margin */
+}
+
 /* Animation for fading in hero content */
 @keyframes fadeInUp {
     to {
@@ -257,15 +262,17 @@ h1 {
     font-weight: 700;
     text-align: left;
     transition: color 0.3s ease; /* Add transition */
-}
-
-.intro {
-    color: var(--text-secondary);
+    color: var(--text-secondary); /* Apply secondary color to both */
 }
 
 /* Light theme adjustment for intro text */
 body.light-theme .intro {
     color: var(--light-text-secondary); /* Use secondary light text color */
+}
+
+/* Light theme adjustment for subtitle text */
+body.light-theme .subtitle {
+    color: var(--light-text-secondary); /* Match intro color in light theme */
 }
 
 /* Ensure the play-intro specifically has the same styling */
@@ -281,10 +288,15 @@ body.light-theme .play-intro {
     transition: color 0.3s ease; /* Add transition */
 }
 
+/* Light theme adjustment for play subtitle */
+body.light-theme .play-subtitle {
+    color: var(--light-text-secondary); /* Match light theme secondary color */
+}
+
 /* Location styling */
 .location {
     font-size: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem; /* Slightly reduce bottom margin */
     color: var(--text-secondary);
     display: flex;
     align-items: center;
@@ -839,7 +851,7 @@ body.light-theme footer {
     
     /* Better text spacing in hero content */
     .hero-content h2 {
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.5rem; /* Adjust mobile margin slightly */
         line-height: 1.2;
     }
     
@@ -857,7 +869,7 @@ body.light-theme footer {
     
     /* Add space after location info */
     .location {
-        margin-bottom: 1.2rem;
+        margin-bottom: 1rem; /* Adjust mobile margin */
     }
 
     /* Smaller text sizes - keeping proper proportion */

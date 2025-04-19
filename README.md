@@ -100,25 +100,20 @@ uniquelimbu-portfolio/
 ├── scripts.js             # JavaScript for animations and interactivity
 ├── robots.txt             # Instructions for search engine crawlers
 ├── sitemap.xml            # XML sitemap for better indexing
+├── sitemap.html           # HTML sitemap for users
+├── 404.html               # Custom 404 error page
+├── humans.txt             # Human-readable metadata about the site
 ├── .nojekyll              # Prevents GitHub Pages from using Jekyll processing
-├── Resume.txt             # Plain text resume for accessibility and parsing
 ├── assets/
-│   ├── favicon/           # Browser and device icons 
-│   │   ├── android-chrome-192x192.png
-│   │   ├── android-chrome-512x512.png
-│   │   ├── apple-touch-icon.png
-│   │   ├── favicon-16x16.png
-│   │   ├── favicon-32x32.png
-│   │   ├── favicon.ico
-│   │   ├── safari-pinned-tab.svg
-│   │   └── site.webmanifest
+│   ├── favicon/           # Browser and device icons (various sizes/formats)
+│   │   └── ... 
 │   └── images/              # Optimized images for portfolio sections
 │       ├── cert_*.png       # Certification badges
 │       ├── education_*.jpg  # Educational institution images
 │       ├── experience_*.jpg # Work experience images
 │       ├── project_*.jpg    # Project showcase images
-│       ├── research_*.jpg   # Research topics images
-│       └── skills_*.jpg     # Learning materials images
+│       ├── research_*.jpg   # Research topics images (Play section)
+│       └── notes_*.jpg      # Learning materials images (Play section)
 └── README.md                # Project documentation
 ```
 

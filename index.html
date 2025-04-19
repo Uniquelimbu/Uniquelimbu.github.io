@@ -39,6 +39,9 @@
     <meta name="msapplication-TileColor" content="#0a0a0a">
     <meta name="theme-color" content="#0a0a0a">
     
+    <!-- Sitemap link for better discovery -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://uniquelimbu.github.io/sitemap.xml">
+    
     <!-- Preconnect to critical domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -162,20 +165,23 @@
           "addressCountry": "Canada"
         }
       },
-      "seeks": {
-        "@type": "JobPosting",
-        "title": "Seeking opportunities in Cybersecurity and Network Engineering",
-        "description": "Open to roles in network security, infrastructure management, and cloud security",
-        "datePosted": "2023-08-01",
-        "employmentType": "FULL_TIME",
-        "jobLocation": {
-          "@type": "Place",
-          "address": {
-            "@type": "PostalAddress",
-            "addressRegion": "Greater Toronto Area",
-            "addressCountry": "Canada"
-          }
-        }
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "url": "https://uniquelimbu.github.io/"
+      },
+      "award": [
+        "CCNA Certification Excellence",
+        "AWS Cloud Practitioner Certification",
+        "ISC² Cybersecurity Certification"
+      ],
+      "knowsLanguage": [
+        "English",
+        "Nepali"
+      ],
+      "interactionStatistic": {
+        "@type": "InteractionCounter",
+        "interactionType": "https://schema.org/CommentAction",
+        "userInteractionCount": "100+ projects completed"
       }
     }
     </script>
@@ -206,7 +212,7 @@
       "@type": "ProfilePage",
       "headline": "Unique Limbu - Cybersecurity & Network Engineer Portfolio",
       "datePublished": "2023-08-15T00:00:00+00:00",
-      "dateModified": "2025-05-27T00:00:00+00:00",
+      "dateModified": "2025-04-19T00:00:00+00:00",
       "inLanguage": "en-US",
       "author": {
         "@type": "Person",
@@ -224,12 +230,14 @@
     </script>
 
     <!-- Google Analytics (GA4) with minimal initial loading impact -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6N0KXDS6X"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX'); // Replace with your actual Google Analytics measurement ID when you have one
+    
+      gtag('config', 'G-S6N0KXDS6X');
     </script>
 </head>
 <body>
@@ -239,8 +247,6 @@
     <!-- Header with logo and social links -->
     <header>
         <div class="logo">UL</div>
-        
-        <div class="spacer"></div>
         
         <nav>
             <ul class="social-links">
@@ -336,7 +342,9 @@
                                                 <p>Security principles, business continuity, disaster recovery & incident response, access controls, network security</p>
                                             </div>
                                             <div class="certification-logo">
-                                                <img src="assets/images/cert_isc2.png" alt="ISC2 Certification">
+                                                <img src="assets/images/cert_isc2.png" 
+                                                     alt="(ISC)² Certified in Cybersecurity (CC) certification badge earned by Unique Limbu" 
+                                                     loading="lazy">
                                             </div>
                                         </div>
                                     </a>
@@ -349,7 +357,9 @@
                                                 <p>Cloud concepts, AWS services, security, architecture, pricing, and support</p>
                                             </div>
                                             <div class="certification-logo">
-                                                <img src="assets/images/cert_aws.png" alt="AWS Certification">
+                                                <img src="assets/images/cert_aws.png" 
+                                                     alt="AWS Certified Cloud Practitioner certification badge earned by Unique Limbu" 
+                                                     loading="lazy">
                                             </div>
                                         </div>
                                     </a>
@@ -362,7 +372,9 @@
                                                 <p>Technical support, system administration, IT infrastructure, cybersecurity, and customer service</p>
                                             </div>
                                             <div class="certification-logo">
-                                                <img src="assets/images/cert_google.png" alt="Google IT Support">
+                                                <img src="assets/images/cert_google.png" 
+                                                     alt="Google IT Support Professional certification badge earned by Unique Limbu" 
+                                                     loading="lazy">
                                             </div>
                                         </div>
                                     </a>
@@ -401,7 +413,10 @@
                         <div class="item image-left">
                             <div class="item-image">
                                 <div class="image-placeholder">
-                                    <img src="assets/images/experience_library.jpg" alt="Lorne Park Library" class="placeholder-image">
+                                    <img src="assets/images/experience_library.jpg" 
+                                         alt="Lorne Park Library interior where Unique Limbu volunteered as Tech Buddy" 
+                                         class="placeholder-image" 
+                                         loading="lazy">
                                 </div>
                             </div>
                             <div class="item-content">
@@ -418,7 +433,10 @@
                         <div class="item image-right">
                             <div class="item-image">
                                 <div class="image-placeholder">
-                                    <img src="assets/images/experience_vcna.jpg" alt="Votorantim Cimentos North America" class="placeholder-image">
+                                    <img src="assets/images/experience_vcna.jpg" 
+                                         alt="Votorantim Cimentos North America office building where Unique Limbu interned as IT Support" 
+                                         class="placeholder-image" 
+                                         loading="lazy">
                                 </div>
                             </div>
                             <div class="item-content">
@@ -492,7 +510,7 @@
         <!-- Play section - hidden by default, shown when toggled -->
         <section id="play" class="content-section">
             <div class="hero">
-                <div class="hero-content play-content">
+                <div class="hero-content"> 
                     <h2>hi, i'm Unique Limbu <span class="emoji">👋</span></h2>
                     <p class="location"><i class="fas fa-map-marker-alt"></i> Brampton, ON</p>
                     <p class="subtitle play-subtitle">sandbox to break, test, and see what happens.</p>
@@ -511,7 +529,10 @@
                         <div class="item image-right">
                             <div class="item-image">
                                 <div class="image-placeholder">
-                                    <img src="assets/images/research_vulnerability.jpg" alt="Vulnerability research projects by Unique Limbu exploring web application security issues" class="placeholder-image" loading="lazy">
+                                    <img src="assets/images/research_vulnerability.jpg" 
+                                         alt="Conceptual image representing vulnerability research in web applications" 
+                                         class="placeholder-image" 
+                                         loading="lazy">
                                 </div>
                             </div>
                             <div class="item-content">
@@ -523,7 +544,10 @@
                         <div class="item image-left">
                             <div class="item-image">
                                 <div class="image-placeholder">
-                                    <img src="assets/images/research_homelab.jpg" alt="Home Network Security Lab built by Unique Limbu for testing security configurations" class="placeholder-image" loading="lazy">
+                                    <img src="assets/images/research_homelab.jpg" 
+                                         alt="Diagram of a home network security lab setup for testing tools like Wireshark and pfSense" 
+                                         class="placeholder-image" 
+                                         loading="lazy">
                                 </div>
                             </div>
                             <div class="item-content">
@@ -544,7 +568,10 @@
                         <div class="item image-right">
                             <div class="item-image">
                                 <div class="image-placeholder">
-                                    <img src="assets/images/notes_networking.jpg" alt="Networking fundamentals notes and diagrams created by Unique Limbu" class="placeholder-image" loading="lazy">
+                                    <img src="assets/images/notes_networking.jpg" 
+                                         alt="Abstract visual representing networking concepts like OSI model and TCP/IP" 
+                                         class="placeholder-image" 
+                                         loading="lazy">
                                 </div>
                             </div>
                             <div class="item-content">
@@ -556,7 +583,10 @@
                         <div class="item image-left">
                             <div class="item-image">
                                 <div class="image-placeholder">
-                                    <img src="assets/images/notes_cybersecurity.jpg" alt="Cybersecurity tools documentation and learning resources compiled by Unique Limbu" class="placeholder-image" loading="lazy">
+                                    <img src="assets/images/notes_cybersecurity.jpg" 
+                                         alt="Collage of cybersecurity tool logos like Kali Linux and Wireshark" 
+                                         class="placeholder-image" 
+                                         loading="lazy">
                                 </div>
                             </div>
                             <div class="item-content">
@@ -575,7 +605,7 @@
         <p>&copy; 2025 Unique Limbu. All rights reserved.</p>
         <!-- Additional name information in the footer for SEO -->
         <div class="footer-info">
-            <p>Website of Unique Limbu | <a href="https://linkedin.com/in/unique-limbu">LinkedIn</a> | <a href="https://github.com/Uniquelimbu">GitHub</a></p>
+            <p>Website of Unique Limbu | <a href="https://linkedin.com/in/unique-limbu">LinkedIn</a> | <a href="https://github.com/Uniquelimbu">GitHub</a> | <a href="/sitemap.html">Sitemap</a></p>
             <p>Contact: <a href="mailto:uniquelimbu2002@gmail.com">uniquelimbu2002@gmail.com</a></p>
         </div>
     </footer>

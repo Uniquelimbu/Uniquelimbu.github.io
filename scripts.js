@@ -51,8 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (currentActiveSection && currentActiveSection.id === targetId) return;
             
             // Update visual state of buttons
-            toggleBtns.forEach(b => b.classList.remove('active'));
+            toggleBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false'); // Update aria-selected
+            });
             this.classList.add('active');
+            this.setAttribute('aria-selected', 'true'); // Update aria-selected
             
             // Step 1: Fade out current section
             if (currentActiveSection) {
@@ -90,12 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Setup and trigger animations for section headers
             animateSectionHeaders(targetSection);
             
-            // Reinitialize animated background if needed
-            if (targetId === 'play') {
-                if (window.initHeroBackground) {
-                    window.initHeroBackground('playHeroBackground');
-                }
-            }
+            // Reinitialize animated background if needed - Removed call to undefined function
+            // if (targetId === 'play') {
+            //     if (window.initHeroBackground) {
+            //         window.initHeroBackground('playHeroBackground');
+            //     }
+            // }
             
             // Fade in the main section content
             setTimeout(() => {
@@ -136,47 +140,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 const image = item.querySelector('.item-image');
                 const content = item.querySelector('.item-content');
                 
-                // Animate image with slight delay
-                setTimeout(() => {
-                    if (image) {
-                        image.style.opacity = '1';
-                        image.style.transform = 'translateY(0)';
-                    }
-                }, 200);
+                // Animate image 
+                if (image) {
+                    image.style.opacity = '1';
+                    image.style.transform = 'translateY(0)';
+                }
                 
-                // Animate content with additional delay
+                // Animate content with slight delay
                 setTimeout(() => {
                     if (content) {
                         content.style.opacity = '1';
                         content.style.transform = 'translateY(0)';
                     }
-                }, 400);
+                }, 200); // Delay content animation slightly after image starts
+
+                // Stop observing the item once it has been animated
+                observer.unobserve(item); 
             }
         });
     }, { 
         threshold: 0.15,      // Trigger when 15% of element is visible
-        rootMargin: '-100px 0px',  // Trigger slightly before element comes into view
+        rootMargin: '-50px 0px',  // Trigger slightly before element comes into view (reduced margin)
     });
 
-    // Set initial state for items and observe them
+    // Set initial state for items (moved to CSS) and observe them
     items.forEach(item => {
-        const image = item.querySelector('.item-image');
-        const content = item.querySelector('.item-content');
-        
-        // Set initial hidden state for images
-        if (image) {
-            image.style.opacity = '0';
-            image.style.transform = 'translateY(30px)';
-            image.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        }
-        
-        // Set initial hidden state for content
-        if (content) {
-            content.style.opacity = '0';
-            content.style.transform = 'translateY(30px)';
-            content.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        }
-        
         // Start observing this item
         observer.observe(item);
     });
@@ -206,15 +194,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle image loading
     const images = document.querySelectorAll('.placeholder-image');
     images.forEach(img => {
-        // When image loads, add loaded class
-        img.addEventListener('load', function() {
-            this.classList.add('loaded');
-            // Find parent placeholder and remove loading animation
-            const placeholder = this.closest('.image-placeholder');
+        // Function to handle loaded state
+        const handleLoad = () => {
+            img.classList.add('loaded');
+            const placeholder = img.closest('.image-placeholder');
             if (placeholder) {
                 placeholder.classList.add('loaded');
             }
-        });
+        };
+
+        // Check if image is already loaded (cached)
+        if (img.complete) {
+            handleLoad();
+        } else {
+            // When image loads, add loaded class
+            img.addEventListener('load', handleLoad);
+        }
         
         // Add error handling
         img.addEventListener('error', function() {
@@ -222,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const placeholder = this.closest('.image-placeholder');
             if (placeholder) {
                 placeholder.classList.add('error');
+                // Optionally hide the broken image icon or show alternative text
             }
         });
     });
@@ -235,21 +231,33 @@ document.addEventListener('DOMContentLoaded', function() {
             let timeSpent = (endTime - startTime) / 1000;
             
             // This would typically send to an analytics system
-            console.log('Time spent on page: ' + timeSpent + ' seconds');
+            // console.log('Time spent on page: ' + timeSpent + ' seconds'); 
         });
         
         // Track scroll depth
         let maxScroll = 0;
+        let scrollTracked = false; // Flag to track if 50% scroll depth reached
         window.addEventListener('scroll', function() {
             // Calculate how far down the page the user has scrolled
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             let scrollHeight = document.documentElement.scrollHeight;
             let clientHeight = document.documentElement.clientHeight;
             
+            // Avoid division by zero if scrollHeight equals clientHeight
+            if (scrollHeight - clientHeight <= 0) return;
+
             let scrolled = (scrollTop / (scrollHeight - clientHeight)) * 100;
             if (scrolled > maxScroll) {
                 maxScroll = scrolled;
             }
-        });
+
+            // Example: Track when user scrolls past 50% (only once)
+            if (!scrollTracked && maxScroll >= 50) {
+                // console.log('User scrolled past 50%');
+                // Send event to analytics here
+                scrollTracked = true; 
+            }
+
+        }, { passive: true }); // Use passive listener for scroll
     }
 });

@@ -6,4 +6,4 @@ Disallow: /assets/favicon/
 Crawl-delay: 10
 
 # Tell search engines where to find our sitemap - absolute URL
-Sitemap: https://uniquelimbu.github.io/sitemap.xml
+Sitemap: https://uniquelimbu.me/sitemap.xml

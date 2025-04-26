@@ -4,7 +4,7 @@
 
 A modern, high-performance portfolio website showcasing my work as a Cybersecurity & Network Engineer. Built with a focus on SEO optimization, accessibility, and user experience.
 
-## 🔗 [Live Demo](https://uniquelimbu.github.io/)
+## 🔗 [Live Demo](https://uniquelimbu.me/)
 
 ## ✨ Features
 
@@ -67,8 +67,8 @@ The site uses enterprise-grade SEO techniques:
 ### GitHub Pages Deployment
 
 1. This site is configured to be hosted on GitHub Pages:
-   - Repository is set up as `username.github.io` for automatic deployment
-   - All canonical URLs, sitemaps, and meta tags reference the GitHub Pages URL
+   - The custom domain uniquelimbu.me is configured via the CNAME file
+   - All canonical URLs, sitemaps, and meta tags reference the custom domain URL
    - The `.nojekyll` file ensures GitHub Pages processes the site correctly
 
 2. To deploy updates:
@@ -130,11 +130,12 @@ Key optimizations include:
 
 The site uses multiple techniques to maximize search engine visibility:
 
-1. **Structured Data**: Complete Schema.org Person and WebSite entities
-2. **Semantic HTML5**: Proper document outline and ARIA attributes 
-3. **Optimized Metadata**: Strategic title tags and meta descriptions
-4. **Performance**: Fast loading improves search ranking
-5. **Mobile-Friendly**: Fully responsive for all devices
+1. **Structured Data**: Complete Schema.org Person and WebSite entities with name variations "Unique", "Limbu", and "Unique Limbu"
+2. **Semantic HTML5**: Proper document outline and ARIA attributes
+3. **Optimized Metadata**: Strategic title tags and meta descriptions with repeated name for better recognition
+4. **Custom Domain**: Professional domain name (uniquelimbu.me) for better branding and recall
+5. **Performance**: Fast loading improves search ranking
+6. **Mobile-Friendly**: Fully responsive for all devices
 
 ## 📱 Browser & Device Support
 

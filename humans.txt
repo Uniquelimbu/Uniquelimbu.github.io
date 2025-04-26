@@ -4,13 +4,15 @@
     LinkedIn: https://linkedin.com/in/unique-limbu
     GitHub: https://github.com/Uniquelimbu
     Location: Brampton, Ontario, Canada
+    Website: https://uniquelimbu.me
 
 /* SITE */
-    Last update: 2025-04-19 <!-- Updated date -->
+    Last update: 2025-04-19
     Language: English
     Doctype: HTML5
     IDE: Visual Studio Code
     Stack: HTML5, CSS3, Vanilla JavaScript
+    Domain: uniquelimbu.me
     
 /* NOTE */
     Thank you for checking out my source code. Feel free to reach out for networking or opportunities!

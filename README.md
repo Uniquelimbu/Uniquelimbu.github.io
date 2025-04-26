@@ -99,12 +99,12 @@ uniquelimbu-portfolio/
 │   ├── favicon/           # Browser and device icons (various sizes/formats)
 │   │   └── ... 
 │   └── images/              # Optimized images for portfolio sections
-│       ├── cert_*.png       # Certification badges
-│       ├── education_*.jpg  # Educational institution images
-│       ├── experience_*.jpg # Work experience images
-│       ├── project_*.jpg    # Project showcase images
-│       ├── research_*.jpg   # Research topics images (Play section)
-│       └── notes_*.jpg      # Learning materials images (Play section)
+│       ├── cert-*.png       # Certification badges
+│       ├── education-*.jpg  # Educational institution images
+│       ├── experience-*.jpg # Work experience images
+│       ├── project-*.jpg    # Project showcase images
+│       ├── research-*.jpg   # Research topics images (Play section)
+│       └── notes-*.jpg      # Learning materials images (Play section)
 └── README.md                # Project documentation
 ```
 

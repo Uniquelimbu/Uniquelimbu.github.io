@@ -7,3 +7,6 @@ Crawl-delay: 10
 
 # Tell search engines where to find our sitemap - absolute URL
 Sitemap: https://uniquelimbu.me/sitemap.xml
+
+# Human-readable sitemap
+# https://uniquelimbu.me/sitemap.html

@@ -235,6 +235,22 @@
     }
     </script>
 
+    <!-- Add breadcrumb structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://uniquelimbu.me/"
+        }
+      ]
+    }
+    </script>
+
     <!-- Google Analytics (GA4) with minimal initial loading impact -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6N0KXDS6X"></script>

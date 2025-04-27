@@ -94,12 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Setup and trigger animations for section headers
             animateSectionHeaders(targetSection);
             
-            // Reinitialize animated background if needed - Removed call to undefined function
-            // if (targetId === 'play') {
-            //     if (window.initHeroBackground) {
-            //         window.initHeroBackground('playHeroBackground');
-            //     }
-            // }
+            // Scroll to top smoothly when switching sections
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
             
             // Fade in the main section content
             setTimeout(() => {

@@ -819,16 +819,17 @@ body.light-theme footer {
     
     /* Completely revamped toggle positioning for mobile */
     .toggle-container {
-        position: static; /* Change from relative to static */
+        position: fixed; /* Change from static to fixed to keep visible when scrolling */
         display: block;
-        top: auto;
-        left: auto;
-        transform: none;
-        margin: 0.75rem auto 1.5rem; /* Reduced spacing (was 1.25rem auto 2rem) */
+        top: 1rem; /* Position at top of screen with small margin */
+        left: 50%;
+        transform: translateX(-50%); /* Center horizontally */
+        margin: 0; /* Remove margin as it's not needed for fixed position */
         animation: none;
         opacity: 1;
         width: 160px;
-        clear: both; /* Ensure it appears below header elements */
+        z-index: 150; /* Ensure it stays above other content */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
     }
     
     /* Remove the animation that was causing positioning issues */
@@ -836,11 +837,11 @@ body.light-theme footer {
         animation: none !important;
     }
     
-    /* Smaller toggle size for mobile */
-    .toggle {
-        width: 100%;
+    /* Add more space at the top of the hero section to prevent overlap with fixed toggle */
+    .hero {
+        padding-top: 3.5rem; /* Increased top padding to account for fixed toggle */
     }
-
+    
     /* Improved hero section for mobile */
     .hero {
         height: auto;
@@ -952,9 +953,8 @@ body.light-theme footer {
     
     /* Smaller toggle container with adjusted spacing */
     .toggle-container {
-        width: 140px;
-        margin: 0.9rem auto 1.5rem; /* Reduced spacing (was 1.5rem auto 2rem) */
-        transform: none;
+        width: 140px; /* Keep the smaller width */
+        top: 0.8rem; /* Position slightly higher on very small screens */
     }
 }
 

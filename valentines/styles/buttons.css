@@ -1,0 +1,91 @@
+/* ============================================
+   BUTTONS — YES, NO, and sassy message
+   ============================================ */
+
+.buttons-area {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    min-height: 70px;
+    position: relative;
+}
+
+/* YES Button */
+.btn-yes {
+    background: linear-gradient(135deg, #ec407a, #c2185b);
+    color: white;
+    border: none;
+    padding: 16px 52px;
+    font-size: 1.4rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 6px 24px rgba(233, 30, 99, 0.35);
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.btn-yes::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-120%) rotate(45deg); }
+    100% { transform: translateX(120%) rotate(45deg); }
+}
+
+.btn-yes:hover {
+    box-shadow: 0 8px 35px rgba(233, 30, 99, 0.55);
+}
+
+/* NO Button */
+.btn-no {
+    background: linear-gradient(135deg, #90a4ae, #78909c);
+    color: #fff;
+    border: none;
+    padding: 14px 38px;
+    font-size: 1.1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    user-select: none;
+    z-index: 20;
+    transition: none; /* JS handles smooth movement */
+    will-change: transform, left, top;
+}
+
+.btn-no.escaped {
+    position: fixed;
+}
+
+/* Sassy message */
+.sassy-msg {
+    font-size: 0.95rem;
+    color: #e91e63;
+    margin-top: 14px;
+    font-weight: 600;
+    min-height: 28px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(5px);
+}
+
+.sassy-msg.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

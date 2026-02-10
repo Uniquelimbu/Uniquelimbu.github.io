@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+
+    <!-- Hidden from search engines -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/effects.css">
+    <link rel="stylesheet" href="styles/face.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/celebration.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+
+    <!-- Soft floating hearts drawn on canvas -->
+    <canvas class="hearts-canvas" id="heartsCanvas"></canvas>
+
+    <!-- ====== QUESTION SCREEN ====== -->
+    <div class="container" id="questionScreen">
+
+        <!-- Cute reactive face -->
+        <div class="cute-face" id="cuteFace">
+            <div class="face-circle">
+                <div class="eye left">
+                    <div class="pupil" id="pupilL"></div>
+                </div>
+                <div class="eye right">
+                    <div class="pupil" id="pupilR"></div>
+                </div>
+                <div class="mouth">
+                    <div class="mouth-shape"></div>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="question">Will you be my Valentine?</h1>
+        <p class="sub-text">~ choose wisely ~</p>
+
+        <div class="buttons-area">
+            <button class="btn-yes" id="yesBtn">YES! 💕</button>
+            <button class="btn-no" id="noBtn">No</button>
+        </div>
+
+        <div class="sassy-msg" id="sassyMsg"></div>
+    </div>
+
+    <!-- ====== YES CELEBRATION SCREEN ====== -->
+    <div class="yes-screen" id="yesScreen">
+        <div class="yes-emoji">🥰</div>
+        <h1 class="yes-title">Yayyy!! 🎉</h1>
+        <p class="yes-message">
+            I knew you'd say yes! 💕<br>
+            You just made me the happiest person ever!<br>
+            Can't wait to spend Valentine's Day with you! 🌹
+        </p>
+        <div class="yes-hearts-row">💖💗💖</div>
+    </div>
+
+    <!-- Confetti layer -->
+    <div class="confetti-layer" id="confettiLayer"></div>
+
+    <!-- Scripts (order matters: state → modules → main) -->
+    <script src="scripts/state.js"></script>
+    <script src="scripts/hearts.js"></script>
+    <script src="scripts/sparkles.js"></script>
+    <script src="scripts/face.js"></script>
+    <script src="scripts/no-button.js"></script>
+    <script src="scripts/confetti.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

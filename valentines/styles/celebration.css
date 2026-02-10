@@ -1,0 +1,88 @@
+/* ============================================
+   CELEBRATION — YES screen + confetti
+   ============================================ */
+
+.yes-screen {
+    display: none;
+    text-align: center;
+    z-index: 100;
+    padding: 20px;
+    position: relative;
+}
+
+.yes-screen.active {
+    display: block;
+    animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.yes-emoji {
+    font-size: 90px;
+    animation: floatBounce 2.5s ease-in-out infinite;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+@keyframes floatBounce {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50%      { transform: translateY(-18px) rotate(3deg); }
+}
+
+.yes-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.2rem;
+    color: #c2185b;
+    margin-bottom: 18px;
+    text-shadow: 2px 2px 4px rgba(194, 24, 91, 0.2);
+}
+
+.yes-message {
+    font-size: 1.2rem;
+    color: #ad1457;
+    line-height: 1.9;
+    max-width: 420px;
+    margin: 0 auto 25px;
+    font-weight: 600;
+}
+
+.yes-hearts-row {
+    font-size: 2.8rem;
+    animation: heartbeat 1.2s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes heartbeat {
+    0%  { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.08); }
+    60% { transform: scale(1); }
+}
+
+/* Confetti layer */
+.confetti-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+    80%  { opacity: 1; }
+    100% { transform: translateY(105vh) rotate(720deg) scale(0.6); opacity: 0; }
+}

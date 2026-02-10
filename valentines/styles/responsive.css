@@ -1,0 +1,25 @@
+/* ============================================
+   RESPONSIVE — Mobile breakpoints
+   ============================================ */
+
+@media (max-width: 500px) {
+    .question { font-size: 2.1rem; }
+
+    .cute-face,
+    .face-circle { width: 110px; height: 110px; }
+
+    .eye       { top: 38px; }
+    .eye.left  { left: 28px; }
+    .eye.right { right: 28px; }
+
+    .face-circle::before,
+    .face-circle::after { top: 62px; }
+
+    .mouth { bottom: 26px; }
+
+    .btn-yes { padding: 14px 38px; font-size: 1.2rem; }
+    .btn-no  { padding: 12px 28px; font-size: 1rem; }
+
+    .yes-title { font-size: 2.4rem; }
+    .yes-emoji { font-size: 65px; }
+}

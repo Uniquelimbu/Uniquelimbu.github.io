@@ -8,10 +8,20 @@
     z-index: 100;
     padding: 20px;
     position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 18vh;
+}
+
+.yes-screen:not(.active) {
+    display: none;
 }
 
 .yes-screen.active {
-    display: block;
+    display: flex;
     animation: fadeInUp 0.8s ease;
 }
 
@@ -49,19 +59,7 @@
     font-weight: 600;
 }
 
-.yes-hearts-row {
-    font-size: 2.8rem;
-    animation: heartbeat 1.2s ease-in-out infinite;
-    display: inline-block;
-}
 
-@keyframes heartbeat {
-    0%  { transform: scale(1); }
-    15% { transform: scale(1.15); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.08); }
-    60% { transform: scale(1); }
-}
 
 /* Confetti layer */
 .confetti-layer {

@@ -26,20 +26,35 @@
         if (st.answered) return;
         st.answered = true;
 
-        el.questionScreen.style.display = 'none';
+        // Build the garden scenery inside YES screen
+        V.sunflower.buildGarden();
+
+        // Smooth fade-out of question screen
+        el.questionScreen.classList.add('question-fade-out');
         el.noBtn.style.display = 'none';
-        el.yesScreen.classList.add('active');
 
-        document.body.style.background =
-            'linear-gradient(135deg, #fce4ec, #f8bbd0, #ff80ab, #ff4081)';
-        document.body.style.backgroundSize = '400% 400%';
+        // After fade completes, swap to celebration page
+        setTimeout(function () {
+            el.questionScreen.style.display = 'none';
+            el.yesScreen.classList.add('active');
 
-        V.confetti.launch();
-        let rounds = 0;
-        const intv = setInterval(() => {
-            V.confetti.launch();
-            if (++rounds > 7) clearInterval(intv);
-        }, 1400);
+            // Change body background to match the sky
+            document.body.style.background = '#87CEEB';
+            document.body.style.animation = 'none';
+
+            // Start sunflower shower
+            V.sunflower.shower();
+
+            // Confetti alongside the shower
+            setTimeout(function () {
+                V.confetti.launch();
+                var rounds = 0;
+                var intv = setInterval(function () {
+                    V.confetti.launch();
+                    if (++rounds > 5) clearInterval(intv);
+                }, 1800);
+            }, 400);
+        }, 600);
     }
 
     // YES hover: always show happy (even during chase)

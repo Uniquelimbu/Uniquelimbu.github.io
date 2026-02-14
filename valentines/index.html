@@ -55,16 +55,93 @@
         <div class="sassy-msg" id="sassyMsg"></div>
     </div>
 
-    <!-- ====== YES CELEBRATION SCREEN ====== -->
+    <!-- Background song -->
+    <audio id="bgSong" loop preload="auto">
+        <source src="song/JVKE - her (official lyric video).mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ====== YES CELEBRATION SCREEN (scrollable wrapper) ====== -->
     <div class="yes-screen" id="yesScreen">
-        <div class="yes-content">
-            <h1 class="yes-title">Yayyy!! 🎉</h1>
-            <p class="yes-message">
-                I knew you'd say yes!<br>
-                You just made me the happiest person ever!<br>
-                Can't wait to spend Valentine's Day with you!
-            </p>
+
+        <!-- Section 1: Celebration Message -->
+        <div class="yes-section section-message" id="sectionMessage">
+            <div class="yes-content">
+                <div class="yes-emoji">🌻💛</div>
+                <h2 class="yes-title">You said YES!</h2>
+                <p class="yes-message">
+                    You are the reason my heart beats in colour.<br>
+                    Every moment with you feels like the universe whispering,<br>
+                    <em>"This is what love was always meant to be."</em>
+                </p>
+                <div class="yes-hearts-row">💕🌸💕</div>
+            </div>
+            <div class="scroll-prompt" id="scrollPrompt">
+                <div class="scroll-text">Thoraii scroll ganus tw 💕</div>
+                <div class="scroll-arrow">⌄</div>
+            </div>
         </div>
+
+        <!-- Section 2: Photo Collage -->
+        <div class="yes-section section-collage" id="sectionCollage">
+            <h2 class="collage-title">Our Moments Together 💖</h2>
+            <div class="photo-marquee">
+                <div class="photo-track">
+                    <div class="photo-collage-set">
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM.jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (1).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (2).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (3).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (4).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (5).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (6).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (7).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (8).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (9).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (10).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (11).jpeg" alt="us"></div>
+                    </div>
+                    <div class="photo-collage-set" aria-hidden="true">
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM.jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (1).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (2).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (3).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (4).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (5).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (6).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (7).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (8).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (9).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (10).jpeg" alt="us"></div>
+                        <div class="collage-item"><img src="images/WhatsApp Image 2026-02-14 at 9.37.36 AM (11).jpeg" alt="us"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Letter -->
+        <div class="yes-section section-letter" id="sectionLetter">
+            <h2 class="letter-title">A Letter Just For You 💌</h2>
+            <div class="envelope-wrap" id="envelopeWrap">
+                <div class="envelope-front"></div>
+                <div class="letter-paper" id="letterPaper">
+                    <p>My love,</p>
+                    <p>Thank you for being the softest peace in my loud world. Every day with you feels like a blessing I never want to take for granted.</p>
+                    <p>You make ordinary moments feel magical, and your smile still gives me butterflies no matter how many times I see it.</p>
+                    <p>I promise to choose you, care for you, and love you a little more in every season of life.</p>
+                    <p>Forever grateful that I get to call you mine.</p>
+                    <p class="signature">With all my heart,<br>Unique ❤️</p>
+                </div>
+            </div>
+            <button class="open-letter-btn" id="openLetterBtn">Open Letter</button>
+        </div>
+
+        <!-- Section navigation dots -->
+        <div class="section-dots" id="sectionDots">
+            <button class="section-dot active" data-section="0" aria-label="Go to message section"></button>
+            <button class="section-dot" data-section="1" aria-label="Go to collage section"></button>
+            <button class="section-dot" data-section="2" aria-label="Go to letter section"></button>
+        </div>
+
     </div>
 
     <!-- Confetti layer -->
